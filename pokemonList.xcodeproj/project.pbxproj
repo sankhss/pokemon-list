@@ -15,6 +15,8 @@
 		7E5DB8B328962C110005CA8A /* pokemonListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5DB8B228962C110005CA8A /* pokemonListTests.swift */; };
 		7E5DB8BD28962C110005CA8A /* pokemonListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5DB8BC28962C110005CA8A /* pokemonListUITests.swift */; };
 		7E5DB8BF28962C110005CA8A /* pokemonListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5DB8BE28962C110005CA8A /* pokemonListUITestsLaunchTests.swift */; };
+		7E5DB8D82896321F0005CA8A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5DB8D72896321F0005CA8A /* SnapKit */; };
+		7E5DB8DB289632520005CA8A /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5DB8DA289632520005CA8A /* BaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,7 @@
 		7E5DB8B828962C110005CA8A /* pokemonListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pokemonListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E5DB8BC28962C110005CA8A /* pokemonListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pokemonListUITests.swift; sourceTree = "<group>"; };
 		7E5DB8BE28962C110005CA8A /* pokemonListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pokemonListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7E5DB8DA289632520005CA8A /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E5DB8D82896321F0005CA8A /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +101,7 @@
 		7E5DB89A28962C0E0005CA8A /* pokemonList */ = {
 			isa = PBXGroup;
 			children = (
+				7E5DB8D9289632520005CA8A /* Components */,
 				7E5DB8CB28962C690005CA8A /* Base */,
 				7E5DB8CC28962C820005CA8A /* Modules */,
 				7E5DB8CD28962C950005CA8A /* Resources */,
@@ -156,6 +161,14 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		7E5DB8D9289632520005CA8A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7E5DB8DA289632520005CA8A /* BaseView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -172,6 +185,9 @@
 			dependencies = (
 			);
 			name = pokemonList;
+			packageProductDependencies = (
+				7E5DB8D72896321F0005CA8A /* SnapKit */,
+			);
 			productName = pokemonList;
 			productReference = 7E5DB89828962C0E0005CA8A /* pokemonList.app */;
 			productType = "com.apple.product-type.application";
@@ -244,6 +260,9 @@
 				Base,
 			);
 			mainGroup = 7E5DB88F28962C0E0005CA8A;
+			packageReferences = (
+				7E5DB8D62896321F0005CA8A /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 7E5DB89928962C0E0005CA8A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -289,6 +308,7 @@
 				7E5DB8A028962C0F0005CA8A /* ViewController.swift in Sources */,
 				7E5DB89C28962C0F0005CA8A /* AppDelegate.swift in Sources */,
 				7E5DB89E28962C0F0005CA8A /* SceneDelegate.swift in Sources */,
+				7E5DB8DB289632520005CA8A /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +640,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7E5DB8D62896321F0005CA8A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7E5DB8D72896321F0005CA8A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E5DB8D62896321F0005CA8A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7E5DB89028962C0E0005CA8A /* Project object */;
 }
