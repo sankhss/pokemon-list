@@ -12,7 +12,17 @@ class PokemonListViewController: UIViewController {
     private var customView: PokemonListView! { return view as? PokemonListView }
     
     //MARK: - Properties
-    private var viewModel = PokemonListViewModel()
+    private let viewModel: PokemonListViewModel
+    weak var coordinator: PokemonListNavigationDelegate?
+    
+    //MARK: - Init
+    init(viewModel: PokemonListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -78,6 +88,7 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
             }
         }
     }
+
     
     //MARK: - Collection flow layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
