@@ -24,26 +24,19 @@ class PokemonDetailView: BaseView {
         return stack
     }()
     
-    
-    private lazy var contentStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [avatarImageView, detailsStackView])
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.distribution = .equalSpacing
-        stack.spacing = 24
-        return stack
-    }()
-    
     //MARK: - Setup
     override func addViews() {
-        addSubview(contentStackView)
+        addSubview(avatarImageView)
+        addSubview(detailsStackView)
     }
     override func addConstraints() {
-        contentStackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(24)
-        }
         avatarImageView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(24)
             make.height.width.lessThanOrEqualTo(200)
+        }
+        detailsStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(avatarImageView)
+            make.top.equalTo(avatarImageView.snp.bottom).offset(24)
         }
     }
     override func setupExtraConfigurations() {
