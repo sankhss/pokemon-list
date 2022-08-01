@@ -7,28 +7,16 @@
 
 import UIKit
 
-class PokemonCell: UICollectionViewCell {
+class PokemonCell: UICollectionViewCell, AppLayout {
     //MARK: - Identifier
     public static let identifier = "PokemonCell"
     
     //MARK: - Views
-    private lazy var spriteImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    private lazy var numberLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 14)
-        return label
-    }()
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14)
-        return label
-    }()
+    private lazy var spriteImageView = makeImageView()
+    private lazy var numberNameLabel = makeLabel(font: .boldSystemFont(ofSize: 14))
+    
     private lazy var contentStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [spriteImageView, numberLabel, nameLabel])
+        let stack = UIStackView(arrangedSubviews: [spriteImageView, numberNameLabel])
         stack.alignment = .center
         stack.distribution = .fillProportionally
         stack.spacing = 24
@@ -61,11 +49,8 @@ class PokemonCell: UICollectionViewCell {
 }
 //MARK: - Support
 extension PokemonCell {
-    func setup(with pokemon: Pokemon) {
-        numberLabel.text = "#\(pokemon.id)"
-        spriteImageView.imageFromURL(pokemon.sprites.frontDefault)
-        nameLabel.text = pokemon.name
-        
-        layoutIfNeeded()
+    func setup(with model: PokemonItemViewModel) {
+        spriteImageView.imageFromURL(model.sprite)
+        numberNameLabel.text = model.title
     }
 }

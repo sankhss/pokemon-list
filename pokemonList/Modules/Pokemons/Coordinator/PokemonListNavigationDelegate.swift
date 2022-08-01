@@ -8,5 +8,5 @@
 import UIKit
 
 protocol PokemonListNavigationDelegate: AnyObject {
-    func didSelectPokemon(viewModel: PokemonDetailViewModel)
+    func didSelectPokemon(_ viewModel: PokemonDetailViewModel)
 }

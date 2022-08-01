@@ -45,6 +45,17 @@ final class PokemonRepository {
         }
     }
     
+    func getPokemon(id: Int, completion: @escaping (Pokemon?, ServiceError?) -> Void) {
+        HttpClient.request(url: K.API.Endpoint.pokemon(id: id.description).url) { (result: Result<Pokemon, ServiceError>) in
+            switch result {
+            case .success(let data):
+                completion(data, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    
     private func getPokemonList(offset: Int = 0, completion: @escaping ([PokemonBase]?, ServiceError?) -> Void) {
         HttpClient.request(url: K.API.Endpoint.pokemons(offset: offset).url) { (result: Result<PokemonsResponse, ServiceError>) in
             switch result {

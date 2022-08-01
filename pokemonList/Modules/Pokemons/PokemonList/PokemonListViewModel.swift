@@ -7,16 +7,16 @@
 
 import Foundation
 
-class PokemonListViewModel {
+class PokemonListViewModel: BaseViewModel {
     //MARK: - Properties
     private let repository = PokemonRepository()
     
     //MARK: - State properties
-    var pokemons = [Pokemon]()
+    private var pokemons = [Pokemon]()
     
-    //MARK: - State events
-    var onDataUpdate: (() -> Void)?
-    var onError: ((String) -> Void)?
+    var count: Int {
+        pokemons.count
+    }
     
     func loadData() {
         repository.getPokemons(offset: pokemons.last?.id ?? 0) { pokemons, error in
@@ -29,5 +29,13 @@ class PokemonListViewModel {
                 self.onDataUpdate?()
             }
         }
+    }
+    
+    func getPokemon(at index: Int) -> PokemonItemViewModel {
+        PokemonItemViewModel(pokemon: pokemons[index])
+    }
+    
+    func selectPokemon(at index: Int) -> PokemonDetailViewModel {
+        PokemonDetailViewModel(pokemon: pokemons[index])
     }
 }

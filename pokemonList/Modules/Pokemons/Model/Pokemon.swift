@@ -67,8 +67,27 @@ struct Move: Decodable {
 
 struct Sprites: Decodable {
     var frontDefault: String
-    
-    enum CodingKeys: String, CodingKey {
+    var avatarDefault: String
+
+    enum ContainerKeys: String, CodingKey {
         case frontDefault = "front_default"
+        case other
+    }
+    
+    enum OtherKeys: String, CodingKey {
+        case home
+    }
+    
+    enum HomeKeys: String, CodingKey {
+        case avatarDefault = "front_default"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: ContainerKeys.self)
+        let otherContainer = try container.nestedContainer(keyedBy: OtherKeys.self, forKey: .other)
+        let homeContainer = try otherContainer.nestedContainer(keyedBy: HomeKeys.self, forKey: .home)
+        
+        self.frontDefault = try container.decode(String.self, forKey: .frontDefault)
+        self.avatarDefault = try homeContainer.decode(String.self, forKey: .avatarDefault)
     }
 }

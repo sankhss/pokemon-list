@@ -67,12 +67,12 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
         1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.pokemons.count
+        viewModel.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let pokemonCell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCell.identifier, for: indexPath) as! PokemonCell
-        let pokemon = viewModel.pokemons[indexPath.item]
-        pokemonCell.setup(with: pokemon)
+        let model = viewModel.getPokemon(at: indexPath.item)
+        pokemonCell.setup(with: model)
         return pokemonCell
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -88,7 +88,10 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
             }
         }
     }
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pokemon = viewModel.selectPokemon(at: indexPath.item)
+        coordinator?.didSelectPokemon(pokemon)
+    }
     
     //MARK: - Collection flow layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

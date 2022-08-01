@@ -29,7 +29,7 @@ final class PokemonsCoordinator: Coordinator {
 }
 
 extension PokemonsCoordinator: PokemonListNavigationDelegate {
-    func didSelectPokemon(viewModel: PokemonDetailViewModel) {
+    func didSelectPokemon(_ viewModel: PokemonDetailViewModel) {
         let pokemonDetailViewController = PokemonDetailViewController(viewModel: viewModel)
         navigationController.pushViewController(pokemonDetailViewController, animated: true)
     }

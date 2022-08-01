@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class BaseView: UIView {
+class BaseView: UIView, AppLayout {
     //MARK: - Init
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,5 +32,23 @@ class BaseView: UIView {
         addViews()
         addConstraints()
         setupExtraConfigurations()
+    }
+}
+
+protocol AppLayout {}
+extension AppLayout where Self: UIView {
+    func makeImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }
+    
+    func makeLabel(_ text: String = "", font: UIFont = .systemFont(ofSize: 14), aligment: NSTextAlignment = .left) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font = font
+        label.textAlignment = aligment
+        label.numberOfLines = 0
+        return label
     }
 }
