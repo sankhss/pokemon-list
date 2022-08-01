@@ -22,7 +22,7 @@ final class PokemonsCoordinator: Coordinator {
     // MARK: - Flow
 
     func start() {
-        let pokemonListViewController = PokemonListViewController(viewModel: PokemonListViewModel())
+        let pokemonListViewController = PokemonListViewController(viewModel: PokemonListViewModel(repository: PokemonRepositoryImpl()))
         pokemonListViewController.coordinator = self
         navigationController.viewControllers = [pokemonListViewController]
     }

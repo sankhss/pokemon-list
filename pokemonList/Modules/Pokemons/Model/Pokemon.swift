@@ -82,6 +82,11 @@ struct Sprites: Decodable {
         case avatarDefault = "front_default"
     }
     
+    init(frontDefault: String, avatarDefault: String) {
+        self.frontDefault = frontDefault
+        self.avatarDefault = avatarDefault
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: ContainerKeys.self)
         let otherContainer = try container.nestedContainer(keyedBy: OtherKeys.self, forKey: .other)

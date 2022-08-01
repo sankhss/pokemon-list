@@ -8,7 +8,11 @@
 import Foundation
 import Combine
 
-final class PokemonRepository {
+protocol PokemonRepository {
+    func getPokemons(offset: Int, completion: @escaping ([Pokemon]?, ServiceError?) -> Void)
+}
+
+final class PokemonRepositoryImpl: PokemonRepository {
     // MARK: - Properties
     private var decoder = JSONDecoder()
 
@@ -41,17 +45,6 @@ final class PokemonRepository {
             group.notify(queue: .main) {
                 pokemonDetails.sort { $0.id < $1.id }
                 completion(pokemonDetails, nil)
-            }
-        }
-    }
-    
-    func getPokemon(id: Int, completion: @escaping (Pokemon?, ServiceError?) -> Void) {
-        HttpClient.request(url: K.API.Endpoint.pokemon(id: id.description).url) { (result: Result<Pokemon, ServiceError>) in
-            switch result {
-            case .success(let data):
-                completion(data, nil)
-            case .failure(let error):
-                completion(nil, error)
             }
         }
     }

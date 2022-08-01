@@ -9,13 +9,18 @@ import Foundation
 
 class PokemonListViewModel: BaseViewModel {
     //MARK: - Properties
-    private let repository = PokemonRepository()
+    private let repository: PokemonRepository
     
     //MARK: - State properties
     private var pokemons = [Pokemon]()
     
     var count: Int {
         pokemons.count
+    }
+    
+    //MARK: - Init
+    init(repository: PokemonRepository) {
+        self.repository = repository
     }
     
     func loadData() {
