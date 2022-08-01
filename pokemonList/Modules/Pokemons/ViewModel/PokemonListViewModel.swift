@@ -19,13 +19,13 @@ class PokemonListViewModel {
     var onError: ((String) -> Void)?
     
     func loadData() {
-        repository.getPokemons { pokemons, error in
+        repository.getPokemons(offset: pokemons.last?.id ?? 0) { pokemons, error in
             if let error = error {
                 self.onError?(error.localizedDescription)
             }
             
             if let pokemons = pokemons {
-                self.pokemons = pokemons
+                self.pokemons.append(contentsOf: pokemons)
                 self.onDataUpdate?()
             }
         }

@@ -65,10 +65,26 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
         pokemonCell.setup(with: pokemon)
         return pokemonCell
     }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionFooter {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LoadingFooterView.identifier, for: indexPath)
+        }
+        return UICollectionReusableView()
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        if elementKind == UICollectionView.elementKindSectionFooter {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.loadData()
+            }
+        }
+    }
     
     //MARK: - Collection flow layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: collectionView.bounds.width, height: 140)
+        .init(width: collectionView.bounds.width, height: 140)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        .init(width: collectionView.bounds.width, height: 100)
     }
 }
 

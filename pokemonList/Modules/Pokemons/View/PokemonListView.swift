@@ -13,6 +13,7 @@ class PokemonListView: BaseView {
         layout.scrollDirection = .vertical
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(PokemonCell.self, forCellWithReuseIdentifier: PokemonCell.identifier)
+        collection.register(LoadingFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: LoadingFooterView.identifier)
         return collection
     }()
     

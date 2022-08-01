@@ -62,7 +62,7 @@ class PokemonCell: UICollectionViewCell {
 //MARK: - Support
 extension PokemonCell {
     func setup(with pokemon: Pokemon) {
-        numberLabel.text = "#\(pokemon.order)"
+        numberLabel.text = "#\(pokemon.id)"
         spriteImageView.imageFromURL(pokemon.sprites.frontDefault)
         nameLabel.text = pokemon.name
         

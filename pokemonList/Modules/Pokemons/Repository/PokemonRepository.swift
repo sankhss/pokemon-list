@@ -13,8 +13,8 @@ final class PokemonRepository {
     private var decoder = JSONDecoder()
 
     // MARK: PokemonRepository
-    func getPokemons(completion: @escaping ([Pokemon]?, ServiceError?) -> Void) {
-        getPokemonList { baseList, error in
+    func getPokemons(offset: Int = 0, completion: @escaping ([Pokemon]?, ServiceError?) -> Void) {
+        getPokemonList(offset: offset) { baseList, error in
             if let error = error {
                 completion(nil, error)
                 return
@@ -45,8 +45,8 @@ final class PokemonRepository {
         }
     }
     
-    private func getPokemonList(completion: @escaping ([PokemonBase]?, ServiceError?) -> Void) {
-        HttpClient.request(url: K.API.Endpoint.pokemons.url) { (result: Result<PokemonsResponse, ServiceError>) in
+    private func getPokemonList(offset: Int = 0, completion: @escaping ([PokemonBase]?, ServiceError?) -> Void) {
+        HttpClient.request(url: K.API.Endpoint.pokemons(offset: offset).url) { (result: Result<PokemonsResponse, ServiceError>) in
             switch result {
             case .success(let data):
                 completion(data.results, nil)
